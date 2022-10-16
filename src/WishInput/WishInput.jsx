@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const WishInput = ({ onNewWish }) => {
+function WishInput({ onNewWish }) {
   const [newWishText, setNewWishText] = useState('');
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const WishInput = ({ onNewWish }) => {
       />
     </fieldset>
   );
-};
+}
 
 WishInput.propTypes = {
   onNewWish: PropTypes.func,

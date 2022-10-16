@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import WishItem from '../WishItem/WishItem';
 
-const WishList = ({ appWishes, onWishesChange }) => {
+function WishList({ appWishes, onWishesChange }) {
   const [wishes, setWishes] = useState(appWishes);
 
   useEffect(() => {
@@ -26,10 +26,10 @@ const WishList = ({ appWishes, onWishesChange }) => {
       ))}
     </ul>
   );
-};
+}
 
 WishList.propTypes = {
-  wishes: PropTypes.arrayOf(
+  appWishes: PropTypes.arrayOf(
     PropTypes.shape({
       done: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired,
@@ -39,7 +39,7 @@ WishList.propTypes = {
 };
 
 WishList.defaultProps = {
-  wishes: [],
+  appWishes: [],
   onWishesChange: () => {},
 };
 

@@ -11,7 +11,7 @@ const initialWishes = [
   { done: false, text: 'Go to the gym' },
 ];
 
-const App = () => {
+function App() {
   const [appWishes, setAppWishes] = useState(initialWishes);
 
   useEffect(() => {
@@ -37,6 +37,6 @@ const App = () => {
       />
     </div>
   );
-};
+}
 
 export default App;

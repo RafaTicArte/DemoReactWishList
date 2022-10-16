@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
-const WishItem = ({ wishItem, onDoneChange }) => {
+function WishItem({ wishItem, onDoneChange }) {
   const [done, setDone] = useState(wishItem.done);
   const { text } = wishItem;
   const { i } = wishItem;
@@ -30,7 +30,7 @@ const WishItem = ({ wishItem, onDoneChange }) => {
       <label htmlFor={`wish${i}`}>{text}</label>
     </li>
   );
-};
+}
 
 WishItem.propTypes = {
   wishItem: PropTypes.shape({
