@@ -4,11 +4,9 @@ import ClassNames from 'classnames';
 
 function WishItem({ wishItem, onDoneChange }) {
   const [done, setDone] = useState(wishItem.done);
-  const { text } = wishItem;
-  const { i } = wishItem;
 
   useEffect(() => {
-    console.log(`Render WishItem: ${text}`);
+    console.log(`Render WishItem: ${wishItem.text}`);
   });
 
   return (
@@ -18,16 +16,16 @@ function WishItem({ wishItem, onDoneChange }) {
       })}
     >
       <input
-        id={`wish${i}`}
+        id={`wish${wishItem.i}`}
         type="checkbox"
         defaultChecked={done}
-        onChange={(e) => {
-          setDone(e.target.checked);
-          const newDone = e.target.checked;
-          onDoneChange({ done: newDone, text, i });
+        onChange={(event) => {
+          setDone(event.target.checked);
+          const newDone = event.target.checked;
+          onDoneChange({ done: newDone, text: wishItem.text, i: wishItem.i });
         }}
       />
-      <label htmlFor={`wish${i}`}>{text}</label>
+      <label htmlFor={`wish${wishItem.i}`}>{wishItem.text}</label>
     </li>
   );
 }
@@ -42,7 +40,7 @@ WishItem.propTypes = {
 };
 
 WishItem.defaultProps = {
-  wishItem: [],
+  wishItem: { done: false, text: '' },
   onDoneChange: () => {},
 };
 

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 function WishInput({ onNewWish }) {
-  const [newWishText, setNewWishText] = useState('');
+  let newWishText = '';
 
   useEffect(() => {
     console.log('Render WishInput');
@@ -14,15 +14,14 @@ function WishInput({ onNewWish }) {
       <input
         className="wish-input__field"
         placeholder="Enter your wish here"
-        value={newWishText}
         onChange={(event) => {
-          setNewWishText(event.target.value);
+          newWishText = event.target.value;
         }}
         onKeyUp={(event) => {
           if (event.key === 'Enter' && newWishText.length > 0) {
             console.log(`New Wish: ${newWishText}`);
             onNewWish({ done: false, text: newWishText });
-            setNewWishText('');
+            newWishText = '';
           }
         }}
       />

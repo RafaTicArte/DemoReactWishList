@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import WishInput from './WishInput/WishInput';
-import WishList from './WishList/WishList';
+import WishInput from './components/WishInput';
+import WishList from './components/WishList';
 import './App.css';
 import logo from './logo.svg';
 

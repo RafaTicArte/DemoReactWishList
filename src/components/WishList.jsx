@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import WishItem from '../WishItem/WishItem';
+import WishItem from './WishItem';
 
 function WishList({ appWishes, onWishesChange }) {
   const [wishes, setWishes] = useState(appWishes);
