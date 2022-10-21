@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import WishItem from './WishItem';
 
-function WishList({ appWishes, onWishesChange }) {
-  const [wishes, setWishes] = useState(appWishes);
-
+function WishList({ wishes, onWishesChange }) {
   useEffect(() => {
-    console.log(`Render WishList x${appWishes.length}`);
-    setWishes(appWishes);
-  }, [appWishes]);
+    console.log(`Render WishList x${wishes.length}`);
+  });
 
   return (
     <ul className="wish-list">
@@ -19,7 +16,6 @@ function WishList({ appWishes, onWishesChange }) {
           onDoneChange={(updatedItem) => {
             const updatedWishes = [...wishes];
             updatedWishes[i].done = updatedItem.done;
-            setWishes([...updatedWishes]);
             onWishesChange(updatedWishes);
           }}
         />
@@ -29,7 +25,7 @@ function WishList({ appWishes, onWishesChange }) {
 }
 
 WishList.propTypes = {
-  appWishes: PropTypes.arrayOf(
+  wishes: PropTypes.arrayOf(
     PropTypes.shape({
       done: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired,
@@ -39,7 +35,7 @@ WishList.propTypes = {
 };
 
 WishList.defaultProps = {
-  appWishes: [],
+  wishes: [],
   onWishesChange: () => {},
 };
 

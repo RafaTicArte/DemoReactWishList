@@ -30,7 +30,7 @@ function App() {
         }}
       />
       <WishList
-        appWishes={appWishes}
+        wishes={appWishes}
         onWishesChange={(updateWishes) => {
           setAppWishes(updateWishes);
         }}

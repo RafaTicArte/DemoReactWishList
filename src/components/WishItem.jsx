@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames';
 
 function WishItem({ wishItem, onDoneChange }) {
-  const [done, setDone] = useState(wishItem.done);
-
   useEffect(() => {
     console.log(`Render WishItem: ${wishItem.text}`);
   });
@@ -12,17 +10,19 @@ function WishItem({ wishItem, onDoneChange }) {
   return (
     <li
       className={ClassNames('wish-list__item', {
-        'wish-list__item--done': done,
+        'wish-list__item--done': wishItem.done,
       })}
     >
       <input
         id={`wish${wishItem.i}`}
         type="checkbox"
-        defaultChecked={done}
+        defaultChecked={wishItem.done}
         onChange={(event) => {
-          setDone(event.target.checked);
-          const newDone = event.target.checked;
-          onDoneChange({ done: newDone, text: wishItem.text, i: wishItem.i });
+          onDoneChange({
+            done: event.target.checked,
+            text: wishItem.text,
+            i: wishItem.i,
+          });
         }}
       />
       <label htmlFor={`wish${wishItem.i}`}>{wishItem.text}</label>
