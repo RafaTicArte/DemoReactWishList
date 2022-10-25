@@ -14,33 +14,33 @@ function WishItem({ wishItem, onDoneChange }) {
       })}
     >
       <input
-        id={`wish${wishItem.i}`}
+        id={`wishItem-${wishItem.id}`}
         type="checkbox"
         defaultChecked={wishItem.done}
         onChange={(event) => {
           onDoneChange({
+            id: wishItem.id,
             done: event.target.checked,
             text: wishItem.text,
-            i: wishItem.i,
           });
         }}
       />
-      <label htmlFor={`wish${wishItem.i}`}>{wishItem.text}</label>
+      <label htmlFor={`wishItem-${wishItem.id}`}>{wishItem.text}</label>
     </li>
   );
 }
 
 WishItem.propTypes = {
   wishItem: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     done: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
-    i: PropTypes.number.isRequired,
   }),
   onDoneChange: PropTypes.func,
 };
 
 WishItem.defaultProps = {
-  wishItem: { done: false, text: '' },
+  wishItem: { id: '', done: false, text: '' },
   onDoneChange: () => {},
 };
 

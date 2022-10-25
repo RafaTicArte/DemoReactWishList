@@ -2,21 +2,19 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import WishItem from './WishItem';
 
-function WishList({ wishes, onWishesChange }) {
+function WishList({ wishes, onWishChange }) {
   useEffect(() => {
     console.log(`Render WishList x${wishes.length}`);
   });
 
   return (
     <ul className="wish-list">
-      {wishes.map(({ done, text }, i) => (
+      {wishes.map(({ id, done, text }) => (
         <WishItem
-          key={text}
-          wishItem={{ done, text, i }}
-          onDoneChange={(updatedItem) => {
-            const updatedWishes = [...wishes];
-            updatedWishes[i].done = updatedItem.done;
-            onWishesChange(updatedWishes);
+          key={id}
+          wishItem={{ id, done, text }}
+          onDoneChange={(updatedWish) => {
+            onWishChange(updatedWish);
           }}
         />
       ))}
@@ -27,16 +25,17 @@ function WishList({ wishes, onWishesChange }) {
 WishList.propTypes = {
   wishes: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       done: PropTypes.bool.isRequired,
       text: PropTypes.string.isRequired,
     }),
   ),
-  onWishesChange: PropTypes.func,
+  onWishChange: PropTypes.func,
 };
 
 WishList.defaultProps = {
   wishes: [],
-  onWishesChange: () => {},
+  onWishChange: () => {},
 };
 
 export default WishList;

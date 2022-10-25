@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { v4 as Uuid } from 'uuid';
 
 function WishInput({ onNewWish }) {
   const wishInputText = useRef();
@@ -18,7 +19,11 @@ function WishInput({ onNewWish }) {
         onKeyUp={(event) => {
           if (event.key === 'Enter' && wishInputText.current.value.length > 0) {
             console.log(`New Wish: ${wishInputText.current.value}`);
-            onNewWish({ done: false, text: wishInputText.current.value });
+            onNewWish({
+              id: Uuid(),
+              done: false,
+              text: wishInputText.current.value,
+            });
             wishInputText.current.value = '';
           }
         }}
