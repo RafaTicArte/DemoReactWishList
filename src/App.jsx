@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { v4 as Uuid } from 'uuid';
 import WishInput from './components/WishInput';
 import WishList from './components/WishList';
+import WishSave from './components/WishSave';
 import './App.css';
-import logo from './logo.svg';
-
-const initialWishes = [
-  { id: Uuid(), done: false, text: 'Travel to the moon' },
-  { id: Uuid(), done: true, text: 'Make an intro course to React' },
-  { id: Uuid(), done: true, text: 'Pay the gym' },
-  { id: Uuid(), done: false, text: 'Go to the gym' },
-];
-
-function onWishChange() {
-  
-}
+import logo from './assets/logo.svg';
 
 function App() {
+  console.log('Loading wishes...');
+  let initialWishes = JSON.parse(localStorage.getItem('WISHES'));
+  if (!initialWishes) {
+    initialWishes = [
+      { id: Uuid(), done: false, text: 'Travel to the moon' },
+      { id: Uuid(), done: true, text: 'Make an intro course to React' },
+      { id: Uuid(), done: true, text: 'Pay the gym' },
+      { id: Uuid(), done: false, text: 'Go to the gym' },
+    ];
+  }
   const [appWishes, setAppWishes] = useState(initialWishes);
 
   useEffect(() => {
@@ -37,13 +37,18 @@ function App() {
       <WishList
         wishes={appWishes}
         onWishChange={(updatedWish) => {
-          const updatedAppWishes = appWishes.map((wish) => {
-            if (wish.id === updatedWish.id) {
-              return { ...wish, done: updatedWish.done };
-            }
-            return wish;
-          });
+          const updatedAppWishes = [...appWishes];
+          const modifyWish = updatedAppWishes.find(
+            (wish) => wish.id === updatedWish.id,
+          );
+          modifyWish.done = updatedWish.done;
           setAppWishes(updatedAppWishes);
+        }}
+      />
+      <WishSave
+        onWishesSave={() => {
+          console.log('Saving wishes...');
+          localStorage.setItem('WISHES', JSON.stringify(appWishes));
         }}
       />
     </div>
