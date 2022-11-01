@@ -6,6 +6,9 @@ import WishSave from './components/WishSave';
 import './App.css';
 import logo from './assets/logo.svg';
 
+/**
+ * Renden main application.
+ */
 function App() {
   console.log('Loading wishes...');
   let initialWishes = JSON.parse(localStorage.getItem('WISHES'));
