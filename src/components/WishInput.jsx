@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { v4 as Uuid } from 'uuid';
 
 /**
  * Render an input text for adding a new wish.
@@ -24,7 +23,7 @@ function WishInput({ onNewWish }) {
           if (event.key === 'Enter' && wishInputText.current.value.length > 0) {
             console.log(`New Wish: ${wishInputText.current.value}`);
             onNewWish({
-              id: Uuid(),
+              id: crypto.randomUUID(),
               done: false,
               text: wishInputText.current.value,
             });
